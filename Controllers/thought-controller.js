@@ -19,7 +19,7 @@ const thoughtController = {
         }).catch(err => res.status(400).json(err));
     },
     getThought(req, res) {
-        console.log(body);
+        // console.log(body);
         Thought.find({}).sort({ createdAt: -1 })
         .then((dbThoughtData) => {
             res.json(dbThoughtData)
