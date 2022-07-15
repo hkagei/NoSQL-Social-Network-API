@@ -3,7 +3,7 @@ const { Thought, User } = require('../Models');
 const thoughtController = {
     
     addThought(req, res) {
-        console.log(body);
+        // console.log(body);
         Thought.create(req.body)
         .then((dbThoughtData) => {
             return User.findOneAndUpdate(
@@ -26,8 +26,8 @@ const thoughtController = {
         }).catch(err => res.status(400).json(err));
     },
     getSingleThought(req, res) {
-        console.log(body);
-        Thought.findOne({ _id: req.params.thoughtId }).select('-__v')
+        // console.log(body);
+        Thought.findOne( req.params.id ).select('-__v')
         .populate("thoughts").then((dbThoughtData) => { if(!dbThoughtData){
     
           return res.status(404).json({ message: 'No user found'});
@@ -38,7 +38,7 @@ const thoughtController = {
       })
     },
     updateThought(req, res) {
-        console.log(body);
+        // console.log(body);
         Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { new: true, runValidators: true })
         .then(dbUserData => {
           if(!dbUserData) {
@@ -50,7 +50,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
     deleteThought(req, res) {
-        User.findOneAndDelete({ _id: req.params.thoughtId })
+        User.findOneAndDelete( req.params.id )
     .then(dbThoughtData => {
     if(!dbThoughtData) {
       return res.status(404).json({ message: 'No user found with this ID'})

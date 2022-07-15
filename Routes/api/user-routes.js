@@ -15,7 +15,7 @@ router
 .post(createUser);
 
 router
-.route('/:id')
+.route('/:userId')
 .get(getSingleUser)
 .put(updateUser)
 .delete(deleteUser);    
