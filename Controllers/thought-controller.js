@@ -27,7 +27,7 @@ const thoughtController = {
     },
     getSingleThought(req, res) {
         // console.log(body);
-        Thought.findOne( req.params.id ).select('-__v')
+        Thought.findOne({ _id: req.params.thoughtId }).select('-__v')
         .populate("thoughts").then((dbThoughtData) => { if(!dbThoughtData){
     
           return res.status(404).json({ message: 'No user found'});
